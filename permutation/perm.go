@@ -1,8 +1,6 @@
-package main
+package perm
 
 import "fmt"
-
-// ToDo : write test
 
 func main() {
 	//pattern := order(8)
