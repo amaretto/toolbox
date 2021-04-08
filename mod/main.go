@@ -24,7 +24,7 @@ var sc *bufio.Scanner = func() *bufio.Scanner {
 func scanString() string { sc.Scan(); return sc.Text() }
 func scanInt() int       { n, _ := strconv.Atoi(scanString()); return n }
 
-// This is just example codes mod 100000007
+// This is just example codes mod 100000007 (from ABC178)
 func main() {
 	N := scanInt()
 	n, e, t := 1, 1, 1
@@ -39,5 +39,27 @@ func main() {
 	ans %= mod
 	// [-]consider if above sub calc result goes negative number
 	ans = (ans + mod) % mod
+	fmt.Println(ans)
+}
+
+// This is example of cumulative sum(from ABC178)
+func cumulativeSum() {
+	N := scanInt()
+	a := scanInts(N)
+	var ans, sum int
+	// you can use mod of sum
+	for _, n := range a {
+		sum += n
+		sum %= mod
+	}
+	for i := N - 1; i > 0; i-- {
+		// in this case, if sum is negative number, you need add mod number
+		sum -= a[i]
+		if sum < 0 {
+			sum += mod
+		}
+		ans += sum * a[i]
+		ans %= mod
+	}
 	fmt.Println(ans)
 }
